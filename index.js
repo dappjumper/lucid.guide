@@ -10,7 +10,11 @@ var favicon = require('serve-favicon');
 
 var app = express();
 
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
 
 app.use(compress());
 
