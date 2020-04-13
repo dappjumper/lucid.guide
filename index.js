@@ -22,6 +22,6 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 80);
 
 console.log('server started on port: ', process.env.PORT || 3000);
