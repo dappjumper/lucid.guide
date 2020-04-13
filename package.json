@@ -1,0 +1,22 @@
+{
+  "name": "lucid.guide",
+  "version": "1.0.0",
+  "description": "Animated primer on Lucid Dreaming",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dappjumper/lucid.guide.git"
+  },
+  "author": "Tobias Andersen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dappjumper/lucid.guide/issues"
+  },
+  "homepage": "https://github.com/dappjumper/lucid.guide#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
