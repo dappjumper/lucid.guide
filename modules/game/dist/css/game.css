@@ -3,7 +3,7 @@
 	height:666px;
 	box-sizing:border-box;
 	text-align:center;
-	background:rgba(0,0,0,0.2);
+	background:rgba(255,255,255,0.01);
 	color:#fafafa;
 	padding:32px;
 }
@@ -19,7 +19,7 @@
 html, body {
 	margin:0;
 	padding:0;
-	background:#333333;
+	background:#222222;
 }
 
 p {
@@ -117,7 +117,7 @@ header {
 	left:0;
 	height:64px;
 	width:100%;
-	background:rgba(0,0,0,0.1);
+	background:rgb(37,37,37);
 }
 
 #app.full {
@@ -196,4 +196,52 @@ html, body, button, a, pre, header, h1,h2,h3 {
 		opacity:1;
 		pointer-events:default;
 	}
+}
+
+.content main {
+	height:100%;
+	position:absolute;
+	width:100%;
+	overflow-y:scroll;
+}
+
+.toolbox {
+	position:absolute;
+	top:100px;
+	left:0;
+	width:100%;
+	text-align:center;
+	padding-bottom:50px;
+}
+
+.toolbox h1 {
+	color:#fafafa;
+	margin-bottom:32px;
+	margin-top:32px;
+}
+
+.toolbox .tool {
+	color:#fafafa;
+	background:rgba(255,255,255,0.01);
+	width:100%;
+	max-width:400px;
+	box-sizing:border-box;
+	padding:32px;
+	margin:16px;
+	display:inline-block;
+	transition: all .1s;
+}
+
+.toolbox .tool:hover {
+	background:rgba(255,255,255,0.05);
+	cursor:pointer;
+}
+
+.tool h2 {
+	font-size:150%;
+}
+
+.tool .icon {
+	font-size:300%;
+	margin-bottom:32px;
 }

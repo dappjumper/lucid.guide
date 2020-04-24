@@ -12,8 +12,49 @@
 					<div v-if="state == 'dashboard'">
 						<header>
 							<p class="avatar">{{ user.address | addressToAvatar }}</p>
-							<button style="float:right" v-on:click="logout">Log out</button>
+							<button style="float:right" v-on:click="logout">🔒 Lock</button>
 						</header>
+						<main>
+							<ul class="toolbox">
+								<h1>What would you like to do?</h1>
+								<li class="tool">
+									<div class="icon">📔</div>
+									<h2>
+										Dream Journal
+									</h2>
+									<p>
+										Write your dreams down
+									</p>
+								</li>
+								<li class="tool">
+									<div class="icon">📈</div>
+									<h2>
+										REM Mapper
+									</h2>
+									<p>
+										What does your REM cycle look like?
+									</p>
+								</li>
+								<li class="tool">
+									<div class="icon">❔</div>
+									<h2>
+										FAQ
+									</h2>
+									<p>
+										Browse through frequently asked questions
+									</p>
+								</li>
+								<li class="tool">
+									<div class="icon">⚙️</div>
+									<h2>
+										Settings
+									</h2>
+									<p>
+										Get QR access code, update preferences and more
+									</p>
+								</li>
+							</ul>
+						</main>
 					</div>
 				</transition>
 				<transition name="blobSwitch">
@@ -32,7 +73,7 @@
 						<p>Your avatar is <span class="avatar">{{user.address | addressToAvatar}}</span></p>
 						<input v-on:keyup.enter="decryptWallet" id="decryptPassword" placeholder="Type a password" type="password"/>
 						<span class="error">{{error}}</span>
-						<button v-on:click="decryptWallet">Unlock</button>
+						<button v-on:click="decryptWallet">🔓 Unlock</button>
 						<button class="danger slowStart" v-on:click="state = 'confirmForget'">Forget</button>
 					</div>
 				</transition>
