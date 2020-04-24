@@ -1,27 +1,27 @@
-var path = require('path');
-var express  = require('express');
-// static file compression middleware
-var compress = require('compression');
-// middleware that allows you to parse request body, json, etc.
-var bodyParser = require('body-parser');
+require('dotenv').config()
+const express = require('express')
+const app = express()
+var cors = require('cors');
+var bodyParser = require('body-parser')
+const port = process.env.PORT || 3000
 
-// middleware to serve a favicon prior to all other assets/routes
-var favicon = require('serve-favicon');
-
-var app = express();
-
+app.use(express.static('app/dist'));
+app.use(cors())
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
-
 app.use(bodyParser.json());
 
-app.use(compress());
+const userModule = require('./modules/user')({
+	database: process.env.MONGODB_URI,
+	verbose: true
+}, app)
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+const gameModule = require('./modules/game')(app)
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => res.sendFile(__dirname+'/dist/index.html') )
+app.get('/css/reset.css', (req, res)=> res.sendFile(__dirname+'/dist/css/reset.css'))
 
-app.listen(process.env.PORT || 80);
-
-console.log('server started on port: ', process.env.PORT || 3000);
+app.listen(port, function(){
+  console.log(`Listening on port ${port}!`)
+});
