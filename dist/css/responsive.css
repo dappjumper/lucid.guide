@@ -2,3 +2,10 @@
 	#app.solo {
 	}
 }
+
+@media only screen and (max-width:435px) {
+	.toolbox button, .toolbox li {
+		width: 100%!important;
+		margin-left: 0!important;
+	}
+}
