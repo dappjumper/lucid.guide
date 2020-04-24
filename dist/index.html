@@ -80,11 +80,12 @@
 											I want to sleep more, why am I awake, who did this?
 										</p>
 									</li>
+									<br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Back</li>
 								</ul>
-							</main>
+							</main></transition><transition name="blobSwitch">
 							<main v-if="tool == 'sleepstate_rem'">
 								<ul class="toolbox pretty">
-									<h1>You feel alert</h1>
+									<h1>🌕 You feel alert</h1>
 									<li class="tool" style="pointer-events:none;">
 										<h2>
 											Should I WILD?
@@ -93,12 +94,12 @@
 											It may be possible to re-enter your dream through a WBTB, but only if you woke from the dream early.
 										</p>
 									</li>
-									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;"><h2>Back</h2></li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;"><h2>Main menu</h2></li>
+									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
 								</ul>
-							</main>
+							</main></transition><transition name="blobSwitch">
 							<main v-if="tool == 'sleepstate_nrem1'">
 								<ul class="toolbox pretty">
-									<h1>You feel somewhat alert</h1>
+									<h1>🌖 You feel somewhat alert</h1>
 									<li class="tool" style="pointer-events:none;">
 										<h2>
 											Should I WILD?
@@ -107,12 +108,12 @@
 											You just missed your REM period, WILD is not recommended.
 										</p>
 									</li>
-									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;"><h2>Back</h2></li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;"><h2>Main menu</h2></li>
+									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
 								</ul>
-							</main>
+							</main></transition><transition name="blobSwitch">
 							<main v-if="tool == 'sleepstate_nrem2'">
 								<ul class="toolbox pretty">
-									<h1>You feel slightly groggy</h1>
+									<h1>🌓 You feel slightly groggy</h1>
 									<li class="tool" style="pointer-events:none;">
 										<h2>
 											Should I WILD?
@@ -121,12 +122,12 @@
 											Only if you are very patient
 										</p>
 									</li>
-									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;"><h2>Back</h2></li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;"><h2>Main menu</h2></li>
+									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
 								</ul>
-							</main>
+							</main></transition><transition name="blobSwitch">
 							<main v-if="tool == 'sleepstate_nrem3'">
 								<ul class="toolbox pretty">
-									<h1>You feel very tired</h1>
+									<h1>🌘 You feel very tired</h1>
 									<li class="tool" style="pointer-events:none;">
 										<h2>
 											Should I WILD?
@@ -135,9 +136,9 @@
 											Yes! Depending on how tired you feel, you might need to stay up for a few minutes before attempting the WBTB WILD.
 										</p>
 									</li>
-									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;"><h2>Back</h2></li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;"><h2>Main menu</h2></li>
+									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
 								</ul>
-							</main>
+							</main></transition>
 						</transition>
 					</div>
 				</transition>
