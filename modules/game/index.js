@@ -9,6 +9,9 @@ module.exports = (app)=>{
 		app.get('/js/game.js', (req, res)=>{
 			res.sendFile(path.join(__dirname, './dist/js', 'game.js'))
 		})
+		app.get('/js/avatars.js', (req, res)=>{
+			res.sendFile(path.join(__dirname, './dist/js', 'avatars.js'))
+		})
 		app.get('/css/game.css', (req, res)=>{
 			res.sendFile(path.join(__dirname, './dist/css', 'game.css'))
 		})

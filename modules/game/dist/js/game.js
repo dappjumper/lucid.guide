@@ -42,6 +42,19 @@ var app = new Vue({
     timeSince: (value)=>{
       let hour = Math.floor(( new Date().getTime() - new Date(value).getTime() ) / 1000 / 60 / 60)
       return (hour > 0 ? hour : 0) + ' hour' + (hour > 1 ? 's' : hour > 0 ? '' : 's')
+    },
+    addressToAvatar: (address)=>{
+      let len = window.avatars.emoji.length;
+      let adr = address.replace('0x','')
+      let r = parseInt('0x'+adr.substr(0,2))
+      let g = parseInt('0x'+adr.substr(2,2))
+      let b = parseInt('0x'+adr.substr(4,2))
+      let max = 254;
+      let avg = Math.floor( (r + g + b ) / 3)
+      let ind = Math.floor( (avg) / max * len ) 
+      if(ind == 102) ind = 101;
+      console.log(ind)
+      return window.avatars.emoji[ind]
     }
   },
   methods: {

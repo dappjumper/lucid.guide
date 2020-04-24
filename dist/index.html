@@ -10,7 +10,7 @@
 				<transition name="blobSwitch">
 					<div v-if="state == 'dashboard'">
 						<header>
-							<p>You have logged in as {{me.address}}<br/>Age: {{me.created | timeSince}}</p>
+							<p class="avatar">{{ user.address | addressToAvatar }}</p>
 							<button style="float:right" v-on:click="logout">Log out</button>
 						</header>
 					</div>
@@ -28,7 +28,7 @@
 				<transition name="blobSwitch">
 					<div v-if="state == 'decryptWallet'">
 						<h1>Please enter your password</h1>
-						<p>Your address is 0x{{user.address}}</p>
+						<p>Your avatar is <span class="avatar">{{user.address | addressToAvatar}}</span></p>
 						<input v-on:keyup.enter="decryptWallet" id="decryptPassword" placeholder="Type a password" type="password"/>
 						<span class="error">{{error}}</span>
 						<button v-on:click="decryptWallet">Unlock</button>
@@ -38,7 +38,7 @@
 				<transition name="blobSwitch">
 					<div  v-if="state == 'encryptNewWallet'">
 						<h1>It's not safe to go without a password!</h1>
-						<p>Your address will be {{user.address}}</p>
+						<p>Your avatar will be <span class="avatar">{{user.address | addressToAvatar}}</span></p>
 						<input v-on:keyup.enter="encryptWallet" id="encryptPassword" placeholder="Type a password" type="password"/>
 						<input v-on:keyup.enter="encryptWallet" id="encryptPasswordVerify" placeholder="Re-type the password" type="password"/>
 						<span class="error">{{error}}</span>
@@ -48,10 +48,9 @@
 				</transition>
 				<transition name="blobSwitch">
 					<div v-if="state == 'initial'">
-						<h1>Welcome to TTD!</h1>
-						<button v-on:click="createWallet">Register with new local wallet</button>
-						<button class="todo">Login via local wallet file</button>
-						<button class="todo">Register or login via metamask</button>
+						<h1>Lucid Guide Toolbox</h1>
+						<button v-on:click="createWallet">I am new</button>
+						<button class="todo">Login</button>
 					</div>
 				</transition>
 			</div>
@@ -59,10 +58,25 @@
 	<script type="text/javascript" src="/js/web3.js"></script>
 	<script type="text/javascript" src="/js/wuf.js"></script>
 	<script type="text/javascript" src="/js/vue.min.js"></script>
+	<script type="text/javascript" src="/js/avatars.js"></script>
 	<script type="text/javascript" src="/js/game.js"></script>
 	</body>
 </html>
 
 <style>
 	.error {color:red;}
+	header .avatar {
+		margin-top:-10px;
+	}
+	.avatar {
+		transition:all .2s;
+		font-size:250%;
+	}
+	header .avatar:hover {
+		cursor:default;
+		transform:scale(1.4,1.4);
+	}
+	.solo {
+		cursor:default;
+	}
 </style>
