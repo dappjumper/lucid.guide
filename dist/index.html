@@ -33,7 +33,7 @@
 						<input v-on:keyup.enter="decryptWallet" id="decryptPassword" placeholder="Type a password" type="password"/>
 						<span class="error">{{error}}</span>
 						<button v-on:click="decryptWallet">Unlock</button>
-						<button class="danger" v-on:click="deleteWallet">Forget</button>
+						<button class="danger slowStart" v-on:click="state = 'confirmForget'">Forget</button>
 					</div>
 				</transition>
 				<transition name="blobSwitch">
@@ -47,6 +47,16 @@
 						<button v-on:click="deleteWallet">Back</button>
 					</div>
 				</transition>
+
+				<transition name="blobSwitch">
+					<div  v-if="state == 'confirmForget'">
+						<h1>Are you sure?</h1>
+						<p><span class="avatar">{{user.address | addressToAvatar}}</span> will be forgotten on this machine, and will require a backup to re-use.</p>
+						<button v-on:click="state = 'decryptWallet'">Back to login</button>
+						<button class="danger slowStart" v-on:click="deleteWallet">Yes, forget me</button>
+					</div>
+				</transition>
+
 				<transition name="blobSwitch">
 					<div v-if="state == 'initial'">
 						<h1>Lucid Guide Toolbox</h1>

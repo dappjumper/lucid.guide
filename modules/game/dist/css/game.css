@@ -175,3 +175,25 @@ header button {
 html, body, button, a, pre, header, h1,h2,h3 {
 	font-family:monospace;
 }
+
+.slowStart {
+	animation: slowstart 3s ease-in forwards;
+	opacity:0;
+}
+
+@keyframes slowstart {
+	0% {
+		opacity:0;
+		pointer-events:none;
+	}
+
+	99% {
+		opacity:0.5;
+		pointer-events:none;
+	}
+
+	100% {
+		opacity:1;
+		pointer-events:default;
+	}
+}
