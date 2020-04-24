@@ -245,3 +245,21 @@ html, body, button, a, pre, header, h1,h2,h3 {
 	font-size:300%;
 	margin-bottom:32px;
 }
+
+.toolbox h1, .toolbox h2, .toolbox p {
+	font-family:sans-serif;
+}
+
+.toolbox p {
+	min-height:64px;
+	font-size:17px;
+	line-height:26px;
+}
+
+.toolbox.pretty p {
+	min-height:0px;
+}
+
+.toolbox li {
+	vertical-align: top;
+}

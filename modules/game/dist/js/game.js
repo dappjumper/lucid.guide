@@ -5,6 +5,7 @@ var app = new Vue({
     nonce: 0,
     state: "",
     display: "",
+    tool: '',
     web3: new Web3(),
     user: {
     	address: ""

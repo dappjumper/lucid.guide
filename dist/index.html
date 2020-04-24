@@ -11,50 +11,134 @@
 				<transition name="blobSwitch">
 					<div v-if="state == 'dashboard'">
 						<header>
-							<p class="avatar">{{ user.address | addressToAvatar }}</p>
+							<p v-on:click="tool = ''" style="cursor:pointer;" class="avatar">{{ user.address | addressToAvatar }}</p>
+							<button v-if="tool" v-on:click="(tool.indexOf('_') > -1 ? tool = tool.split('_')[0] : tool = '')">Back</button>
 							<button style="float:right" v-on:click="logout">🔒 Lock</button>
 						</header>
-						<main>
-							<ul class="toolbox">
-								<h1>What would you like to do?</h1>
-								<li class="tool">
-									<div class="icon">📔</div>
-									<h2>
-										Dream Journal
-									</h2>
-									<p>
-										Write your dreams down
-									</p>
-								</li>
-								<li class="tool">
-									<div class="icon">📈</div>
-									<h2>
-										REM Mapper
-									</h2>
-									<p>
-										What does your REM cycle look like?
-									</p>
-								</li>
-								<li class="tool">
-									<div class="icon">❔</div>
-									<h2>
-										FAQ
-									</h2>
-									<p>
-										Browse through frequently asked questions
-									</p>
-								</li>
-								<li class="tool">
-									<div class="icon">⚙️</div>
-									<h2>
-										Settings
-									</h2>
-									<p>
-										Get QR access code, update preferences and more
-									</p>
-								</li>
-							</ul>
-						</main>
+						<transition name="blobSwitch">
+							<main v-if="!tool">
+								<ul class="toolbox">
+									<h1>What would you like to do?</h1>
+									<li v-on:click="tool = 'sleepstate'" class="tool">
+										<div class="icon">👀</div>
+										<h2>
+											I just woke up
+										</h2>
+										<p>
+											Figure out which sleep state you woke from
+										</p>
+									</li>
+									<li class="tool">
+										<div class="icon">⚙️</div>
+										<h2>
+											Settings
+										</h2>
+										<p>
+											Get QR access code, update preferences and more
+										</p>
+									</li>
+								</ul>
+							</main>
+						</transition>
+						<transition name="blobSwitch">
+							<main v-if="tool == 'sleepstate'">
+								<ul class="toolbox">
+									<h1>How do you feel?</h1>
+									<li class="tool" v-on:click="tool = 'sleepstate_rem'">
+										<div class="icon">🌕</div>
+										<h2>
+											Alert
+										</h2>
+										<p>
+											I just stepped out of a dream
+										</p>
+									</li>
+									<li class="tool" v-on:click="tool = 'sleepstate_nrem1'">
+										<div class="icon">🌖</div>
+										<h2>
+											Somewhat alert
+										</h2>
+										<p>
+											I feel well rested, but the transition from my dream is not instant
+										</p>
+									</li>
+									<li class="tool" v-on:click="tool = 'sleepstate_nrem2'">
+										<div class="icon">🌓</div>
+										<h2>
+											Slightly groggy
+										</h2>
+										<p>
+											I feel like hitting that snooze button!
+										</p>
+									</li>
+									<li class="tool" v-on:click="tool = 'sleepstate_nrem3'">
+										<div class="icon">🌘</div>
+										<h2>
+											Very tired
+										</h2>
+										<p>
+											I want to sleep more, why am I awake, who did this?
+										</p>
+									</li>
+								</ul>
+							</main>
+							<main v-if="tool == 'sleepstate_rem'">
+								<ul class="toolbox pretty">
+									<h1>You feel alert</h1>
+									<li class="tool" style="pointer-events:none;">
+										<h2>
+											Should I WILD?
+										</h2>
+										<p>
+											It may be possible to re-enter your dream through a WBTB, but only if you woke from the dream early.
+										</p>
+									</li>
+									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;"><h2>Back</h2></li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;"><h2>Main menu</h2></li>
+								</ul>
+							</main>
+							<main v-if="tool == 'sleepstate_nrem1'">
+								<ul class="toolbox pretty">
+									<h1>You feel somewhat alert</h1>
+									<li class="tool" style="pointer-events:none;">
+										<h2>
+											Should I WILD?
+										</h2>
+										<p>
+											You just missed your REM period, WILD is not recommended.
+										</p>
+									</li>
+									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;"><h2>Back</h2></li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;"><h2>Main menu</h2></li>
+								</ul>
+							</main>
+							<main v-if="tool == 'sleepstate_nrem2'">
+								<ul class="toolbox pretty">
+									<h1>You feel slightly groggy</h1>
+									<li class="tool" style="pointer-events:none;">
+										<h2>
+											Should I WILD?
+										</h2>
+										<p>
+											Only if you are very patient
+										</p>
+									</li>
+									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;"><h2>Back</h2></li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;"><h2>Main menu</h2></li>
+								</ul>
+							</main>
+							<main v-if="tool == 'sleepstate_nrem3'">
+								<ul class="toolbox pretty">
+									<h1>You feel very tired</h1>
+									<li class="tool" style="pointer-events:none;">
+										<h2>
+											Should I WILD?
+										</h2>
+										<p>
+											Yes! Depending on how tired you feel, you might need to stay up for a few minutes before attempting the WBTB WILD.
+										</p>
+									</li>
+									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;"><h2>Back</h2></li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;"><h2>Main menu</h2></li>
+								</ul>
+							</main>
+						</transition>
 					</div>
 				</transition>
 				<transition name="blobSwitch">
