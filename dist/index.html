@@ -11,15 +11,15 @@
 				<transition name="blobSwitch">
 					<div v-if="state == 'dashboard'">
 						<header>
-							<p v-on:click="tool = ''" style="cursor:pointer;" class="avatar">{{ user.address | addressToAvatar }}</p>
-							<button v-if="tool" v-on:click="(tool.indexOf('_') > -1 ? tool = tool.split('_')[0] : tool = '')">Back</button>
-							<button style="float:right" v-on:click="logout">🔒 Lock</button>
+							<p v-on:mousedown="tool = ''" style="cursor:pointer;" class="avatar">{{ user.address | addressToAvatar }}</p>
+							<button v-if="tool" v-on:mousedown="(tool.indexOf('_') > -1 ? tool = tool.split('_')[0] : tool = '')">Back</button>
+							<button style="float:right" v-on:mousedown="logout">🔒 Lock</button>
 						</header>
 						<transition name="blobSwitch">
 							<main v-if="!tool">
 								<ul class="toolbox">
 									<h1>What would you like to do?</h1>
-									<li v-on:click="tool = 'sleepstate'" class="tool">
+									<li v-on:mousedown="tool = 'sleepstate'" class="tool">
 										<div class="icon">👀</div>
 										<h2>
 											I just woke up
@@ -53,7 +53,7 @@
 							<main v-if="tool == 'sleepstate'">
 								<ul class="toolbox">
 									<h1>How do you feel?</h1>
-									<li class="tool" v-on:click="tool = 'sleepstate_rem'">
+									<li class="tool" v-on:mousedown="tool = 'sleepstate_rem'">
 										<div class="icon">🌕</div>
 										<h2>
 											Alert
@@ -62,7 +62,7 @@
 											I just stepped out of a dream
 										</p>
 									</li>
-									<li class="tool" v-on:click="tool = 'sleepstate_nrem1'">
+									<li class="tool" v-on:mousedown="tool = 'sleepstate_nrem1'">
 										<div class="icon">🌖</div>
 										<h2>
 											Somewhat alert
@@ -71,7 +71,7 @@
 											I feel well rested, but the transition from my dream is not instant
 										</p>
 									</li>
-									<li class="tool" v-on:click="tool = 'sleepstate_nrem2'">
+									<li class="tool" v-on:mousedown="tool = 'sleepstate_nrem2'">
 										<div class="icon">🌓</div>
 										<h2>
 											Slightly groggy
@@ -80,7 +80,7 @@
 											I feel like hitting that snooze button!
 										</p>
 									</li>
-									<li class="tool" v-on:click="tool = 'sleepstate_nrem3'">
+									<li class="tool" v-on:mousedown="tool = 'sleepstate_nrem3'">
 										<div class="icon">🌘</div>
 										<h2>
 											Very tired
@@ -89,7 +89,7 @@
 											I want to sleep more, why am I awake, who did this?
 										</p>
 									</li>
-									<br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Back</li>
+									<br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Back</li>
 								</ul>
 							</main></transition><transition name="blobSwitch">
 							<main v-if="tool == 'sleepstate_rem'">
@@ -103,7 +103,7 @@
 											It may be possible to re-enter your dream through a WBTB, but only if you woke from the dream early.
 										</p>
 									</li>
-									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
+									<br/><li v-on:mousedown="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
 								</ul>
 							</main></transition><transition name="blobSwitch">
 							<main v-if="tool == 'sleepstate_nrem1'">
@@ -117,7 +117,7 @@
 											You just missed your REM period, WILD is not recommended.
 										</p>
 									</li>
-									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
+									<br/><li v-on:mousedown="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
 								</ul>
 							</main></transition><transition name="blobSwitch">
 							<main v-if="tool == 'sleepstate_nrem2'">
@@ -131,7 +131,7 @@
 											Only if you are very patient
 										</p>
 									</li>
-									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
+									<br/><li v-on:mousedown="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
 								</ul>
 							</main></transition><transition name="blobSwitch">
 							<main v-if="tool == 'sleepstate_nrem3'">
@@ -145,7 +145,7 @@
 											Yes! Depending on how tired you feel, you might need to stay up for a few minutes before attempting the WBTB WILD.
 										</p>
 									</li>
-									<br/><li v-on:click="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:click="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
+									<br/><li v-on:mousedown="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
 								</ul>
 							</main></transition>
 						</transition>
@@ -167,8 +167,8 @@
 						<p>Your avatar is <span class="avatar">{{user.address | addressToAvatar}}</span></p>
 						<input v-on:keyup.enter="decryptWallet" id="decryptPassword" placeholder="Type a password" type="password"/>
 						<span class="error">{{error}}</span>
-						<button v-on:click="decryptWallet">🔓 Unlock</button>
-						<button class="danger slowStart" v-on:click="state = 'confirmForget'">Forget</button>
+						<button v-on:mousedown="decryptWallet">🔓 Unlock</button>
+						<button class="danger slowStart" v-on:mousedown="state = 'confirmForget'">Forget</button>
 					</div>
 				</transition>
 				<transition name="blobSwitch">
@@ -178,8 +178,8 @@
 						<input v-on:keyup.enter="encryptWallet" id="encryptPassword" placeholder="Type a password" type="password"/>
 						<input v-on:keyup.enter="encryptWallet" id="encryptPasswordVerify" placeholder="Re-type the password" type="password"/>
 						<span class="error">{{error}}</span>
-						<button v-on:click="encryptWallet">Register</button>
-						<button v-on:click="deleteWallet">Back</button>
+						<button v-on:mousedown="encryptWallet">Register</button>
+						<button v-on:mousedown="deleteWallet">Back</button>
 					</div>
 				</transition>
 
@@ -187,15 +187,15 @@
 					<div  v-if="state == 'confirmForget'">
 						<h1>Are you sure?</h1>
 						<p><span class="avatar">{{user.address | addressToAvatar}}</span> will be forgotten on this machine, and will require a backup to re-use.</p>
-						<button v-on:click="state = 'decryptWallet'">Back to login</button>
-						<button class="danger slowStart" v-on:click="deleteWallet">Yes, forget me</button>
+						<button v-on:mousedown="state = 'decryptWallet'">Back to login</button>
+						<button class="danger slowStart" v-on:mousedown="deleteWallet">Yes, forget me</button>
 					</div>
 				</transition>
 
 				<transition name="blobSwitch">
 					<div v-if="state == 'initial'">
 						<h1>Lucid Guide Toolbox</h1>
-						<button v-on:click="createWallet">I am new</button>
+						<button v-on:mousedown="createWallet">I am new</button>
 						<button class="todo">Login</button>
 					</div>
 				</transition>
