@@ -21,6 +21,7 @@ const gameModule = require('./modules/game')(app)
 
 app.get('/', (req, res) => res.sendFile(__dirname+'/dist/index.html') )
 app.get('/css/reset.css', (req, res)=> res.sendFile(__dirname+'/dist/css/reset.css'))
+app.get('/css/responsive.css', (req, res)=> res.sendFile(__dirname+'/dist/css/responsive.css'))
 
 app.listen(port, function(){
   console.log(`Listening on port ${port}!`)
