@@ -11,7 +11,7 @@
 				<transition name="blobSwitch">
 					<div v-if="state == 'dashboard'">
 						<header>
-							<p v-on:mousedown="tool = ''" style="cursor:pointer;" class="avatar">{{ user.address | addressToAvatar }}</p>
+							<img v-bind:title="user.address.toLowerCase()" v-on:mousedown="tool = ''" style="cursor:pointer;" class="avatar" v-bind:src="window.avatars.api(user.address)"/>
 							<button v-if="tool" v-on:mousedown="(tool.indexOf('_') > -1 ? tool = tool.split('_')[0] : tool = '')">Back</button>
 							<button style="float:right" v-on:mousedown="logout">🔒 Lock</button>
 						</header>
@@ -19,13 +19,13 @@
 							<main v-if="!tool">
 								<ul class="toolbox">
 									<h1>What would you like to do?</h1>
-									<li v-on:mousedown="tool = 'sleepstate'" class="tool">
-										<div class="icon">👀</div>
+									<li v-on:mousedown="tool = 'remtool'" class="tool">
+										<div class="icon">⏲</div>
 										<h2>
-											I just woke up
+											REM Tracker
 										</h2>
 										<p>
-											Figure out which sleep state you woke from
+											Your companion tool for REM tracking
 										</p>
 									</li>
 									<li class="tool" onclick="window.open('https://t.me/luciddreamchat','_blank')">
@@ -34,10 +34,19 @@
 											Chat
 										</h2>
 										<p>
-											Go to our Telegram group
+											Chat about lucid dreaming efforts!
 										</p>
 									</li>
-									<li class="tool">
+									<li class="tool" onclick="window.open('https://thelucidguide.com/forum','_blank')">
+										<div class="icon">⌨️</div>
+										<h2>
+											Forum
+										</h2>
+										<p>
+											Discuss all things dreaming
+										</p>
+									</li>
+									<li v-on:mousedown="tool = 'settings'" class="tool">
 										<div class="icon">⚙️</div>
 										<h2>
 											Settings
@@ -50,104 +59,20 @@
 							</main>
 						</transition>
 						<transition name="blobSwitch">
-							<main v-if="tool == 'sleepstate'">
+							<main v-if="tool == 'remtool'">
 								<ul class="toolbox">
-									<h1>How do you feel?</h1>
-									<li class="tool" v-on:mousedown="tool = 'sleepstate_rem'">
-										<div class="icon">🌕</div>
-										<h2>
-											Alert
-										</h2>
-										<p>
-											I just stepped out of a dream
-										</p>
-									</li>
-									<li class="tool" v-on:mousedown="tool = 'sleepstate_nrem1'">
-										<div class="icon">🌖</div>
-										<h2>
-											Somewhat alert
-										</h2>
-										<p>
-											I feel well rested, but the transition from my dream is not instant
-										</p>
-									</li>
-									<li class="tool" v-on:mousedown="tool = 'sleepstate_nrem2'">
-										<div class="icon">🌓</div>
-										<h2>
-											Slightly groggy
-										</h2>
-										<p>
-											I feel like hitting that snooze button!
-										</p>
-									</li>
-									<li class="tool" v-on:mousedown="tool = 'sleepstate_nrem3'">
-										<div class="icon">🌘</div>
-										<h2>
-											Very tired
-										</h2>
-										<p>
-											I want to sleep more, why am I awake, who did this?
-										</p>
-									</li>
+									<h1>Under construction</h1>
 									<br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Back</li>
 								</ul>
-							</main></transition><transition name="blobSwitch">
-							<main v-if="tool == 'sleepstate_rem'">
-								<ul class="toolbox pretty">
-									<h1>🌕 You feel alert</h1>
-									<li class="tool" style="pointer-events:none;">
-										<h2>
-											Should I WILD?
-										</h2>
-										<p>
-											It may be possible to re-enter your dream through a WBTB, but only if you woke from the dream early.
-										</p>
-									</li>
-									<br/><li v-on:mousedown="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
+							</main>
+						</transition>
+						<transition name="blobSwitch">
+							<main v-if="tool == 'settings'">
+								<ul class="toolbox">
+									<h1>Under construction</h1>
+									<br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Back</li>
 								</ul>
-							</main></transition><transition name="blobSwitch">
-							<main v-if="tool == 'sleepstate_nrem1'">
-								<ul class="toolbox pretty">
-									<h1>🌖 You feel somewhat alert</h1>
-									<li class="tool" style="pointer-events:none;">
-										<h2>
-											Should I WILD?
-										</h2>
-										<p>
-											You just missed your REM period, WILD is not recommended.
-										</p>
-									</li>
-									<br/><li v-on:mousedown="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
-								</ul>
-							</main></transition><transition name="blobSwitch">
-							<main v-if="tool == 'sleepstate_nrem2'">
-								<ul class="toolbox pretty">
-									<h1>🌓 You feel slightly groggy</h1>
-									<li class="tool" style="pointer-events:none;">
-										<h2>
-											Should I WILD?
-										</h2>
-										<p>
-											Only if you are very patient
-										</p>
-									</li>
-									<br/><li v-on:mousedown="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
-								</ul>
-							</main></transition><transition name="blobSwitch">
-							<main v-if="tool == 'sleepstate_nrem3'">
-								<ul class="toolbox pretty">
-									<h1>🌘 You feel very tired</h1>
-									<li class="tool" style="pointer-events:none;">
-										<h2>
-											Should I WILD?
-										</h2>
-										<p>
-											Yes! Depending on how tired you feel, you might need to stay up for a few minutes before attempting the WBTB WILD.
-										</p>
-									</li>
-									<br/><li v-on:mousedown="tool = 'sleepstate'" class="tool" style="outline:2px solid #fafafa;">Back</li><br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Main menu</li>
-								</ul>
-							</main></transition>
+							</main>
 						</transition>
 					</div>
 				</transition>
@@ -164,7 +89,7 @@
 				<transition name="blobSwitch">
 					<div v-if="state == 'decryptWallet'">
 						<h1>Please enter your password</h1>
-						<p>Your avatar is <span class="avatar">{{user.address | addressToAvatar}}</span></p>
+						<p>Your avatar is <img v-bind:title="user.address.toLowerCase()" v-on:mousedown="tool = ''" style="cursor:pointer;" class="avatar" v-bind:src="window.avatars.api(user.address)"/></p>
 						<input v-on:keyup.enter="decryptWallet" id="decryptPassword" placeholder="Type a password" type="password"/>
 						<span class="error">{{error}}</span>
 						<button v-on:mousedown="decryptWallet">🔓 Unlock</button>
@@ -174,7 +99,7 @@
 				<transition name="blobSwitch">
 					<div  v-if="state == 'encryptNewWallet'">
 						<h1>It's not safe to go without a password!</h1>
-						<p>Your avatar will be <span class="avatar">{{user.address | addressToAvatar}}</span></p>
+						<p>Your avatar will be <img v-bind:title="user.address.toLowerCase()" v-on:mousedown="tool = ''" style="cursor:pointer;" class="avatar" v-bind:src="window.avatars.api(user.address)"/></p>
 						<input v-on:keyup.enter="encryptWallet" id="encryptPassword" placeholder="Type a password" type="password"/>
 						<input v-on:keyup.enter="encryptWallet" id="encryptPasswordVerify" placeholder="Re-type the password" type="password"/>
 						<span class="error">{{error}}</span>
@@ -186,7 +111,7 @@
 				<transition name="blobSwitch">
 					<div  v-if="state == 'confirmForget'">
 						<h1>Are you sure?</h1>
-						<p><span class="avatar">{{user.address | addressToAvatar}}</span> will be forgotten on this machine, and will require a backup to re-use.</p>
+						<p><img v-bind:title="user.address.toLowerCase()" v-on:mousedown="tool = ''" style="cursor:pointer;" class="avatar" v-bind:src="window.avatars.api(user.address)"/> will be forgotten on this machine, and will require a backup to re-use.</p>
 						<button v-on:mousedown="state = 'decryptWallet'">Back to login</button>
 						<button class="danger slowStart" v-on:mousedown="deleteWallet">Yes, forget me</button>
 					</div>

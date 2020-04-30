@@ -1,3 +1,10 @@
+window.sharedObject = {
+  remchart: {
+    'young': [0,1],
+    'old': []
+  }
+}
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -17,6 +24,20 @@ var app = new Vue({
       nonce: null,
       _id: null,
       address: null
+    },
+    ageToTotalSleep: {
+      "1-5d": 16,
+      "3-5m": 14,
+      "6-23m": 13,
+      "2-3y": 12,
+      "4-5y": 11,
+      "6-9y": 10.5,
+      "10-13y": 10,
+      "14-18y": 9,
+      "19-30y": 8,
+      "31-50y": 7,
+      "51-70y": 6,
+      "71+": 5.5
     }
   },
   mounted: function(){

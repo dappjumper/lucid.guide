@@ -263,3 +263,21 @@ html, body, button, a, pre, header, h1,h2,h3 {
 .toolbox li {
 	vertical-align: top;
 }
+
+.avatar {
+	border-radius:32px;
+}
+
+header .avatar {
+	position:relative;
+	top:16px;
+	left:8px;
+	height:50px;
+	margin-right:25px;
+}
+
+.avatar {
+	height:50px;
+	width:50px;
+	display:inline-block;
+}
