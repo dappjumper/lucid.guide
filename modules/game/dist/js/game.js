@@ -25,6 +25,7 @@ var app = new Vue({
       _id: null,
       address: null
     },
+    qrBlob: "",
     ageToTotalSleep: {
       "1-5d": 16,
       "3-5m": 14,
@@ -38,6 +39,9 @@ var app = new Vue({
       "31-50y": 7,
       "51-70y": 6,
       "71+": 5.5
+    },
+    ageToCycle: {
+      
     }
   },
   mounted: function(){
@@ -92,13 +96,23 @@ var app = new Vue({
           this.error = ""
           this.status = ""
           this.me = result.user
-          console.log(this.me)
+          var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: localStorage.getItem('ttd_enc_wallet'),
+            width: 512,
+            height: 512,
+            colorDark : "#222222",
+            colorLight : "#fafafa",
+            correctLevel : QRCode.CorrectLevel.H
+          });
         }.bind(this))
         .catch(function(){
           this.state = ""
           this.status = "Could not load profile..."
           this.state = "loading"
         }.bind(this))
+    },
+    setQR: function(){
+      this.qrBlob = document.querySelector("#qrcode img").src
     },
     setError: function(string){
       this.error = string
@@ -116,6 +130,18 @@ var app = new Vue({
           this.state = "loading"
           this.status = "Failed..."
         })
+    },
+    downloadEnc: function(){
+      var element = document.createElement('a');
+        element.setAttribute('href', 'data:json/plain;charset=utf-8,' + encodeURIComponent(localStorage.getItem('ttd_enc_wallet')));
+        element.setAttribute('download', 'Lucid_Toolbox_User');
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
     },
     signChallenge: function(strategy, object) {
       switch(strategy) {

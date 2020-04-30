@@ -46,7 +46,7 @@
 											Discuss all things dreaming
 										</p>
 									</li>
-									<li v-on:mousedown="tool = 'settings'" class="tool">
+									<li v-on:mousedown="setQR(); tool = 'settings'" class="tool">
 										<div class="icon">⚙️</div>
 										<h2>
 											Settings
@@ -69,7 +69,10 @@
 						<transition name="blobSwitch">
 							<main v-if="tool == 'settings'">
 								<ul class="toolbox">
-									<h1>Under construction</h1>
+									<h1>QR Code</h1>
+									<p style="color:#fafafa;">Scan with your mobile device to access your account there as well</p>
+									<img class="slowStart" id="qrcode_generated" style="padding:64px; background:#fafafa; margin-bottom:32px;" v-bind:src="qrBlob"/>
+									<br/><li v-on:mousedown="downloadEnc()" class="tool" style="outline:2px solid #fafafa;">Download</li>
 									<br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Back</li>
 								</ul>
 							</main>
@@ -126,10 +129,12 @@
 				</transition>
 			</div>
 		</div>
+		<div id="qrcode" style="display:none;"></div>
 	<script type="text/javascript" src="/js/web3.js"></script>
 	<script type="text/javascript" src="/js/wuf.js"></script>
 	<script type="text/javascript" src="/js/vue.min.js"></script>
 	<script type="text/javascript" src="/js/avatars.js"></script>
+	<script type="text/javascript" src="/js/qr.js"></script>
 	<script type="text/javascript" src="/js/game.js"></script>
 	</body>
 </html>
