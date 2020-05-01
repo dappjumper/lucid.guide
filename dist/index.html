@@ -122,7 +122,7 @@
 				<transition name="blobSwitch">
 					<div v-if="state == 'scanQR'">
 						<h1>Scan your QR</h1>
-						<video id="qrscan"></video>
+						<video style="max-height:500px; max-width:500px; width:100%; margin-top:32px;" id="qrscan"></video>
 						<button v-on:mousedown="state = 'initial'">Back</button>
 					</div>
 				</transition>

@@ -146,7 +146,11 @@ var app = new Vue({
     scanQR: function(){
       this.state = "scanQR"
       setTimeout(function(){
-        const qrScanner = new QrScanner(document.querySelector("#qrscan"), result => console.log('decoded qr code:', result));
+        window.qrScanner = new QrScanner(document.querySelector("#qrscan"), function(result){
+          localStorage.setItem('ttd_enc_wallet',result);
+          window.location.reload()
+        }.bind(this));
+        qrScanner.start()
       }.bind(this),1)
     },
     signChallenge: function(strategy, object) {
