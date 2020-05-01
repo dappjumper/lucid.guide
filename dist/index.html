@@ -119,12 +119,18 @@
 						<button class="danger slowStart" v-on:mousedown="deleteWallet">Yes, forget me</button>
 					</div>
 				</transition>
-
+				<transition name="blobSwitch">
+					<div v-if="state == 'scanQR'">
+						<h1>Scan your QR</h1>
+						<video id="qrscan"></video>
+						<button v-on:mousedown="state = 'initial'">Back</button>
+					</div>
+				</transition>
 				<transition name="blobSwitch">
 					<div v-if="state == 'initial'">
 						<h1>Lucid Guide Toolbox</h1>
 						<button v-on:mousedown="createWallet">I am new</button>
-						<button class="todo">Login</button>
+						<button v-on:mousedown="scanQR">Scan QR</button>
 					</div>
 				</transition>
 			</div>
@@ -135,6 +141,11 @@
 	<script type="text/javascript" src="/js/vue.min.js"></script>
 	<script type="text/javascript" src="/js/avatars.js"></script>
 	<script type="text/javascript" src="/js/qr.js"></script>
+	<script type="module">
+		import QrScanner from "/js/qrscan.js";
+		QrScanner.WORKER_PATH = '/js/qrscan_worker.js';
+		window.QrScanner = QrScanner;
+	</script>
 	<script type="text/javascript" src="/js/game.js"></script>
 	</body>
 </html>

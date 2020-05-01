@@ -143,6 +143,12 @@ var app = new Vue({
 
         document.body.removeChild(element);
     },
+    scanQR: function(){
+      this.state = "scanQR"
+      setTimeout(function(){
+        const qrScanner = new QrScanner(document.querySelector("#qrscan"), result => console.log('decoded qr code:', result));
+      }.bind(this),1)
+    },
     signChallenge: function(strategy, object) {
       switch(strategy) {
         case 'local':
