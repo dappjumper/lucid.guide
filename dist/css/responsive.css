@@ -9,6 +9,17 @@
 		margin-left:0!important;
 		margin-right:0;
 	}
+	.tool {
+		padding:16px 0!important;
+		margin:8px 0!important;
+	}
+	.tool p {
+		margin-bottom: 0;
+		min-height:0!important;
+	}
+	.tool .icon {
+		margin-bottom:8px!important;
+	}
 }
 
 @media only screen and (max-width:435px) {
