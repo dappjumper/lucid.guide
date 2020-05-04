@@ -112,6 +112,20 @@ var app = new Vue({
           this.state = "loading"
         }.bind(this))
     },
+    loadBackupWallet: function(e){
+      let reader = new FileReader()
+      reader.onload = this.backupWalletLoaded
+      reader.readAsText(event.target.files[0])
+    },
+    backupWalletLoaded: function(e) {
+      console.log(event.target.result)
+      if(event.target.result.indexOf("address") > -1) {
+        localStorage.setItem('ttd_enc_wallet',event.target.result)
+        window.location.reload()
+      } else {
+        //Bad file
+      }
+    },
     setQR: function(){
       this.qrBlob = document.querySelector("#qrcode img").src
     },
