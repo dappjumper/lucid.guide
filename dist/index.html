@@ -3,7 +3,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<span style="display:none;" id="indexVersion">0.1.0</span>
+		<span style="display:none;" id="indexVersion">0.1.1</span>
 		<div style="opacity:0; transition:opacity 0.5;" id="app" v-bind:class="{[display]:true}">
 			<div style="position:fixed; bottom:16px; right:32px; pointer-events:none; background:rgba(0,0,0,0.2); padding:8px 16px; text-align:right; font-family:monospace; z-index:999; color:#fafafa; font-size:20px;">version {{version}}</div>
 			<div class="content">
@@ -164,6 +164,7 @@
 		function startApp() {
 			window.history.replaceState(null, null, window.location.pathname);
 			setTimeout(function(){
+				document.querySelector('#finalScript').innerHTML = "import QrScanner from '/js/qrscan.js'; QrScanner.WORKER_PATH = '/js/qrscan_worker.js'; window.QrScanner = QrScanner;"
 				document.querySelector('#app').setAttribute('style','transition: opacity 0.5;')
 			},5)
 		}
@@ -215,11 +216,7 @@
 			window.loadScripts(scripts)
 		})
 		</script>
-	<script type="module">
-		import QrScanner from "/js/qrscan.js";
-		QrScanner.WORKER_PATH = '/js/qrscan_worker.js';
-		window.QrScanner = QrScanner;
-	</script>
+		<script type='module' id="finalScript"></script>
 	</body>
 </html>
 
