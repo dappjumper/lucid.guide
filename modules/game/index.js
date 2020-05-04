@@ -12,15 +12,7 @@ module.exports = (app)=>{
 		app.get('/js/avatars.js', (req, res)=>{
 			res.sendFile(path.join(__dirname, './dist/js', 'avatars.js'))
 		})
-		app.get('/js/qr.js', (req, res)=>{
-			res.sendFile(path.join(__dirname, './dist/js', 'qr.js'))
-		})
-		app.get('/js/qrscan.js', (req, res)=>{
-			res.sendFile(path.join(__dirname, './dist/js', 'qrscan.js'))
-		})
-		app.get('/js/qrscan_worker.js', (req, res)=>{
-			res.sendFile(path.join(__dirname, './dist/js', 'qrscan_worker.js'))
-		})
+
 		app.get('/css/game.css', (req, res)=>{
 			res.sendFile(path.join(__dirname, './dist/css', 'game.css'))
 		})

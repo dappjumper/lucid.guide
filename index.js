@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 var cors = require('cors');
 var bodyParser = require('body-parser')
-const version = "0.1.1"
+const version = "0.1.2"
 const port = process.env.PORT || 3000
 
 app.use(express.static('app/dist'));

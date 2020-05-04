@@ -3,7 +3,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<span style="display:none;" id="indexVersion">0.1.1</span>
+		<span style="display:none;" id="indexVersion">0.1.2</span>
 		<div style="opacity:0; transition:opacity 0.5;" id="app" v-bind:class="{[display]:true}">
 			<div id="displayedVersion" style="position:fixed; bottom:16px; right:32px; pointer-events:none; background:rgba(0,0,0,0.2); padding:8px 16px; text-align:right; font-family:monospace; z-index:999; color:#fafafa; font-size:20px;">version {{version}}</div>
 			<div class="content">
@@ -45,13 +45,13 @@
 											Discuss all things dreaming
 										</p>
 									</li>
-									<li v-on:mousedown="setQR(); tool = 'settings'" class="tool">
+									<li v-on:mousedown="tool = 'settings'" class="tool">
 										<div class="icon">⚙️</div>
 										<h2>
 											Settings
 										</h2>
 										<p>
-											Get QR access code, update preferences and more
+											Download backup of your user
 										</p>
 									</li>
 								</ul>
@@ -68,10 +68,7 @@
 						<transition name="blobSwitch">
 							<main v-if="tool == 'settings'">
 								<ul class="toolbox">
-									<h1>QR Code</h1>
-									<p style="color:#fafafa;">Scan with your mobile device to access your account there as well</p>
-									<img class="slowStart" id="qrcode_generated" style="padding:64px; background:#fafafa; margin-bottom:32px;" v-bind:src="qrBlob"/>
-									<br/><li v-on:mousedown="downloadEnc()" class="tool" style="outline:2px solid #fafafa;">Download</li>
+									<br/><li v-on:mousedown="downloadEnc()" class="tool" style="outline:2px solid #fafafa;">Download backup</li>
 									<br/><li v-on:mousedown="tool = ''" class="tool" style="outline:2px solid #fafafa;">Back</li>
 								</ul>
 							</main>
@@ -119,13 +116,6 @@
 					</div>
 				</transition>
 				<transition name="blobSwitch">
-					<div v-if="state == 'scanQR'">
-						<h1>Scan your QR</h1>
-						<video style="max-height:500px; max-width:500px; width:100%; margin-top:32px;" id="qrscan"></video>
-						<button v-on:mousedown="state = 'initial'">Back</button>
-					</div>
-				</transition>
-				<transition name="blobSwitch">
 					<div v-if="state == 'initial'">
 						<h1>Lucid Guide Toolbox</h1>
 						<button v-on:mousedown="createWallet">I am new</button>
@@ -133,12 +123,10 @@
 							<span style="cursor:pointer;">Upload backup</span>
 							<input style="opacity:0.0000001; cursor:pointer; background:blue; position:absolute; top:0; left:0; margin-top:0px; height:100%; width:100%;" id="inputBackup" v-on:change="loadBackupWallet" type="file">
 						</button>
-						<button v-on:mousedown="scanQR">Scan QR</button>
 					</div>
 				</transition>
 			</div>
 		</div>
-		<div id="qrcode" style="display:none;"></div>
 		<script type="text/javascript">
 		
 		window.loadScripts = (arr)=>{
@@ -209,14 +197,10 @@
 				"/js/wuf.js?v="+result,
 				"/js/vue.min.js?v="+result,
 				"/js/avatars.js?v="+result,
-				"/js/qr.js?v="+result,
 				"/js/game.js?v="+result
 			]
 			window.loadScripts(scripts)
 		})
-		</script>
-		<script type='module' id="finalScript">
-			
 		</script>
 	</body>
 </html>

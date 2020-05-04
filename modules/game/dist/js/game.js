@@ -26,7 +26,6 @@ var app = new Vue({
       _id: null,
       address: null
     },
-    qrBlob: "",
     ageToTotalSleep: {
       "1-5d": 16,
       "3-5m": 14,
@@ -97,14 +96,6 @@ var app = new Vue({
           this.error = ""
           this.status = ""
           this.me = result.user
-          var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: localStorage.getItem('ttd_enc_wallet'),
-            width: 512,
-            height: 512,
-            colorDark : "#222222",
-            colorLight : "#fafafa",
-            correctLevel : QRCode.CorrectLevel.H
-          });
         }.bind(this))
         .catch(function(){
           this.state = ""
@@ -125,9 +116,6 @@ var app = new Vue({
       } else {
         //Bad file
       }
-    },
-    setQR: function(){
-      this.qrBlob = document.querySelector("#qrcode img").src
     },
     setError: function(string){
       this.error = string
@@ -157,16 +145,6 @@ var app = new Vue({
         element.click();
 
         document.body.removeChild(element);
-    },
-    scanQR: function(){
-      this.state = "scanQR"
-      setTimeout(function(){
-        window.qrScanner = new QrScanner(document.querySelector("#qrscan"), function(result){
-          localStorage.setItem('ttd_enc_wallet',result);
-          window.location.reload()
-        }.bind(this));
-        qrScanner.start()
-      }.bind(this),1)
     },
     signChallenge: function(strategy, object) {
       switch(strategy) {
