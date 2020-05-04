@@ -8,6 +8,7 @@ window.sharedObject = {
 var app = new Vue({
   el: '#app',
   data: {
+    version: window.version,
     message: 'Under construction',
     nonce: 0,
     state: "",

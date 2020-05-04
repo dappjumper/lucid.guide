@@ -7,6 +7,7 @@
 	</head>
 	<body>
 		<div id="app" v-bind:class="{[display]:true}">
+			<div style="position:fixed; bottom:16px; right:32px; pointer-events:none; background:rgba(0,0,0,0.2); padding:8px 16px; text-align:right; font-family:monospace; z-index:999; color:#fafafa; font-size:20px;">version {{version}}</div>
 			<div class="content">
 				<transition name="blobSwitch">
 					<div v-if="state == 'dashboard'">
@@ -136,17 +137,58 @@
 			</div>
 		</div>
 		<div id="qrcode" style="display:none;"></div>
-	<script type="text/javascript" src="/js/web3.js"></script>
-	<script type="text/javascript" src="/js/wuf.js"></script>
-	<script type="text/javascript" src="/js/vue.min.js"></script>
-	<script type="text/javascript" src="/js/avatars.js"></script>
-	<script type="text/javascript" src="/js/qr.js"></script>
+		<script type="text/javascript">
+		
+		window.loadScripts = (arr)=>{
+			let current = arr.shift()
+			if(arr.length) {
+				script(current, function(){
+					window.loadScripts(arr)
+				}.bind(arr))
+			} else {
+				script(current, startApp)
+			}
+		}
+		function startApp() {
+
+		}
+		function script(url, afterWards) {
+		    var s = document.createElement('script');
+		    s.type = 'text/javascript';
+		    s.async = true;
+		    s.onload = afterWards;
+		    s.src = url;
+		    var x = document.getElementsByTagName('head')[0];
+		    x.appendChild(s);
+		}
+		window.simpleGET = (url, callback)=>
+		{
+		    var xmlHttp = new XMLHttpRequest();
+		    xmlHttp.onreadystatechange = function() { 
+		        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+		            callback(xmlHttp.responseText);
+		    }
+		    xmlHttp.open("GET", url, true); // true for asynchronous 
+		    xmlHttp.send(null);
+		}
+		window.simpleGET('/api/version', (result)=>{
+			window.version = result;
+			let scripts = [
+				"/js/web3.js?v="+result,
+				"/js/wuf.js?v="+result,
+				"/js/vue.min.js?v="+result,
+				"/js/avatars.js?v="+result,
+				"/js/qr.js?v="+result,
+				"/js/game.js?v="+result
+			]
+			window.loadScripts(scripts)
+		})
+		</script>
 	<script type="module">
 		import QrScanner from "/js/qrscan.js";
 		QrScanner.WORKER_PATH = '/js/qrscan_worker.js';
 		window.QrScanner = QrScanner;
 	</script>
-	<script type="text/javascript" src="/js/game.js"></script>
 	</body>
 </html>
 
