@@ -164,7 +164,6 @@
 		function startApp() {
 			window.history.replaceState(null, null, window.location.pathname);
 			setTimeout(function(){
-				document.querySelector('#finalScript').innerHTML = "import QrScanner from '/js/qrscan.js'; QrScanner.WORKER_PATH = '/js/qrscan_worker.js'; window.QrScanner = QrScanner;"
 				document.querySelector('#app').setAttribute('style','transition: opacity 0.5;')
 			},5)
 		}
@@ -216,7 +215,9 @@
 			window.loadScripts(scripts)
 		})
 		</script>
-		<script type='module' id="finalScript"></script>
+		<script type='module' id="final">
+			
+		</script>
 	</body>
 </html>
 
